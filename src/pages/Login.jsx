@@ -140,6 +140,7 @@ const { access, refresh, username: user, is_student, is_faculty ,profile_complet
               login
             </Link>
           </p> */}
+           <Link to ='/dashboard-faculty' className="ml-2 text-center link link-hover link-primary capitalize">Back to Home</Link>
         </form>
       </div>
     </section>
