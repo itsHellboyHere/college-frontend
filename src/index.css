@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components{
+    .align-element{
+        @apply mx-auto max-w-6xl px-8;
+    }
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.unauthorized-page {
+    width: 100%;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.6),
+      rgba(0, 0, 0, 0.6)
+    ),
+    url("./assets/access.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.btn-denied{
+    width: auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* transition: all   ; */
+
+}
+
+.btn-denied:hover{
+    background-color: #f16464;
+}
