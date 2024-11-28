@@ -21,7 +21,7 @@ const UpdateStudentProfile = () => {
     const fetchStudentData = async () => {
       try {
         const token = localStorage.getItem("access_token");
-        const response = await axios.get("http://localhost:8001/api/students/view/", {
+        const response = await axios.get("https://joyful-determination-production.up.railway.app/api/students/view/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +47,7 @@ const UpdateStudentProfile = () => {
 
     try {
       const token = localStorage.getItem("access_token");
-      await axios.put("http://localhost:8001/api/students/update/", formData, {
+      await axios.put("/api/students/update/", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",

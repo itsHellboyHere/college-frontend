@@ -26,7 +26,7 @@ const CreateStudentProfile = () => {
 
     try {
       const token = localStorage.getItem("access_token");
-      const response = await axios.post("http://localhost:8001/api/students/create-profile/", formData, {
+      const response = await axios.post("https://joyful-determination-production.up.railway.app/api/students/create-profile/", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
