@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-
+import { Link } from "react-router";
 const DashBoard = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -78,6 +78,13 @@ const DashBoard = () => {
 
   return (
     <div className="p-8">
+      
+      <nav className="bg-blue-500 p-4 text-white flex justify-between">
+        <h1 className="text-2xl font-bold">Faculty Dashboard</h1>
+        <Link to="/update-student" className="bg-white text-blue-500 px-4 py-2 rounded">
+          Update Student
+        </Link>
+      </nav>
       <h1 className="text-2xl font-bold">Student Dashboard</h1>
       <div className="flex items-center mt-4">
         {/* Profile Picture Section */}

@@ -12,6 +12,7 @@ import LandingPage from "./pages/LandingPage"
 import Header from "./components/Header"
 import CreateStudent from "./pages/CreateStudent"
 import ViewStudent from "./components/ViewStudent"
+import UpdateStudentProfile from "./components/UpdateStudentProfile"
 
 const App = () => {
    const location = useLocation();
@@ -49,7 +50,13 @@ const App = () => {
             <CreateStudent/>
           </ProtectedRoute>
         }/>
+        <Route path="/update-student" element={
+          <ProtectedRoute role="is_student" >
+            <UpdateStudentProfile/>
+          </ProtectedRoute>
+        }/>
         <Route
+        
   path="/student/:id"
   element={
     <ProtectedRoute role="is_faculty">

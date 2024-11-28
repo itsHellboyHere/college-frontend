@@ -13,17 +13,15 @@ const UpdateStudentProfile = () => {
     contact_number: "",
     address: "",
   });
-  const [profilePicture, setProfilePicture] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  // Fetch the existing student data (on page load)
   useEffect(() => {
     const fetchStudentData = async () => {
       try {
         const token = localStorage.getItem("access_token");
-        const response = await axios.get("http://localhost:8001/api/students/me/", {
+        const response = await axios.get("http://localhost:8001/api/students/view/", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,73 +36,41 @@ const UpdateStudentProfile = () => {
     fetchStudentData();
   }, []);
 
-  // Handle change in form fields
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Handle profile picture upload
-  const handleFileChange = (e) => {
-    setProfilePicture(e.target.files[0]);
-  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
 
-  // Update student details
-  const updateStudentDetails = async () => {
     try {
       const token = localStorage.getItem("access_token");
       await axios.put("http://localhost:8001/api/students/update/", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       });
       toast.success("Student details updated successfully!");
+      navigate("/dashboard");
     } catch (error) {
       console.error(error);
       toast.error("Failed to update student details.");
+    } finally {
+      setLoading(false);
     }
-  };
-
-  // Upload profile picture
-  const uploadProfilePicture = async () => {
-    if (!profilePicture) {
-      toast.error("Please select a profile picture.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("profile_picture", profilePicture);
-
-    try {
-      const token = localStorage.getItem("access_token");
-      await axios.post("http://localhost:8001/api/students/upload-profile-picture/", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      toast.success("Profile picture updated successfully!");
-    } catch (error) {
-      console.error(error);
-      toast.error("Failed to upload profile picture.");
-    }
-  };
-
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    updateStudentDetails();
-    uploadProfilePicture();
-    setLoading(false);
   };
 
   return (
     <section className="h-screen grid place-items-center">
-      <form onSubmit={handleSubmit} className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
+      >
         <h4 className="text-center text-3xl font-bold">Update Profile</h4>
 
-        {/* First Name */}
         <div className="form-control">
           <label className="label">First Name</label>
           <input
@@ -117,7 +83,6 @@ const UpdateStudentProfile = () => {
           />
         </div>
 
-        {/* Last Name */}
         <div className="form-control">
           <label className="label">Last Name</label>
           <input
@@ -130,7 +95,6 @@ const UpdateStudentProfile = () => {
           />
         </div>
 
-        {/* Date of Birth */}
         <div className="form-control">
           <label className="label">Date of Birth</label>
           <input
@@ -143,7 +107,6 @@ const UpdateStudentProfile = () => {
           />
         </div>
 
-        {/* Gender */}
         <div className="form-control">
           <label className="label">Gender</label>
           <select
@@ -153,14 +116,15 @@ const UpdateStudentProfile = () => {
             onChange={handleChange}
             required
           >
-            <option value="" disabled>Select gender</option>
+            <option value="" disabled>
+              Select gender
+            </option>
             <option value="M">Male</option>
             <option value="F">Female</option>
             <option value="O">Other</option>
           </select>
         </div>
 
-        {/* Blood Group */}
         <div className="form-control">
           <label className="label">Blood Group</label>
           <input
@@ -173,7 +137,6 @@ const UpdateStudentProfile = () => {
           />
         </div>
 
-        {/* Contact Number */}
         <div className="form-control">
           <label className="label">Contact Number</label>
           <input
@@ -186,7 +149,6 @@ const UpdateStudentProfile = () => {
           />
         </div>
 
-        {/* Address */}
         <div className="form-control">
           <label className="label">Address</label>
           <textarea
@@ -198,18 +160,6 @@ const UpdateStudentProfile = () => {
           ></textarea>
         </div>
 
-        {/* Profile Picture Upload */}
-        <div className="form-control">
-          <label className="label">Profile Picture</label>
-          <input
-            type="file"
-            name="profile_picture"
-            className="input input-bordered"
-            onChange={handleFileChange}
-          />
-        </div>
-
-        {/* Submit Button */}
         <button
           type="submit"
           className={`btn btn-primary w-full ${loading ? "btn-disabled" : ""}`}
