@@ -33,7 +33,7 @@ const navigate=useNavigate()
             
         }
       )
-      console.log(response);
+      // console.log(response);
       
 const { access, refresh, username: user, is_student, is_faculty ,profile_completed} = response.data;
 

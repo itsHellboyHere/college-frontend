@@ -11,7 +11,7 @@ const DashboardFaculty = () => {
     const fetchStudents = async () => {
       try {
         const token = localStorage.getItem("access_token");
-        const response = await axios.get("https://joyful-determination-production.up.railway.app/api/faculty/view", {
+        const response = await axios.get("https://joyful-determination-production.up.railway.app/api/faculty/view-student", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -33,13 +33,18 @@ const DashboardFaculty = () => {
 
   return (
     <div className="p-8">
-      {/* Navbar */}
-      <nav className="bg-blue-500 p-4 text-white flex justify-between">
-        <h1 className="text-2xl font-bold">Faculty Dashboard</h1>
-        <Link to="/create-student" className="bg-white text-blue-500 px-4 py-2 rounded">
-          Create Student
-        </Link>
-      </nav>
+    
+    <nav className="bg-blue-500 p-4 text-white flex justify-between">
+  <h1 className="text-2xl font-bold">Faculty Dashboard</h1>
+  <div>
+    <Link to="/create-student" className="bg-white text-blue-500 px-4 py-2 rounded mr-4">
+      Create Student
+    </Link>
+    <Link to="/create-subject" className="bg-white text-blue-500 px-4 py-2 rounded">
+      Create Subject
+    </Link>
+  </div>
+</nav>
 
       {/* Students List */}
       <div className="mt-6">

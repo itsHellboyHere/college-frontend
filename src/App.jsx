@@ -13,6 +13,7 @@ import Header from "./components/Header"
 import CreateStudent from "./pages/CreateStudent"
 import ViewStudent from "./components/ViewStudent"
 import UpdateStudentProfile from "./components/UpdateStudentProfile"
+import CreateSubject from "./components/CreateSubject"
 
 const App = () => {
    const location = useLocation();
@@ -55,6 +56,14 @@ const App = () => {
             <UpdateStudentProfile/>
           </ProtectedRoute>
         }/>
+        <Route
+        path="/create-subject"
+        element={
+          <ProtectedRoute role="is_faculty" >
+            <CreateSubject/>
+          </ProtectedRoute>
+        }
+        />
         <Route
         
   path="/student/:id"

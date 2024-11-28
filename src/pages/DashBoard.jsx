@@ -13,7 +13,7 @@ const DashBoard = () => {
     try {
       const token = localStorage.getItem("access_token");
       const response = await axios.get(
-        "https://joyful-determination-production.up.railway.app/api/students/view/",
+        "https://joyful-determination-production.up.railway.app/api/students/view",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -80,7 +80,7 @@ const DashBoard = () => {
     <div className="p-8">
       
       <nav className="bg-blue-500 p-4 text-white flex justify-between">
-        <h1 className="text-2xl font-bold">Faculty Dashboard</h1>
+        <h1 className="text-2xl font-bold"> Dashboard</h1>
         <Link to="/update-student" className="bg-white text-blue-500 px-4 py-2 rounded">
           Update Student
         </Link>
