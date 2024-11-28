@@ -47,7 +47,8 @@ const UpdateStudentProfile = () => {
 
     try {
       const token = localStorage.getItem("access_token");
-      await axios.put("/api/students/update/", formData, {
+      
+      await axios.put("https://joyful-determination-production.up.railway.app/api/students/update/", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
