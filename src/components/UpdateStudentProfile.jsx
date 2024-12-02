@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 const UpdateStudentProfile = () => {
   const [formData, setFormData] = useState({
@@ -70,7 +70,7 @@ const UpdateStudentProfile = () => {
       <form
         onSubmit={handleSubmit}
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"
-      >
+      > <Link to ='/dashboard' className="ml-2 text-center link link-hover link-primary capitalize">Back to Home</Link>
         <h4 className="text-center text-3xl font-bold">Update Profile</h4>
 
         <div className="form-control">

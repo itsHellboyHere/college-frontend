@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const CreateSubject = () => {
@@ -38,8 +38,13 @@ const CreateSubject = () => {
 
   return (
     <div className="p-8">
-      <nav className="bg-blue-500 p-4 text-white flex justify-between">
+      <nav className="bg-blue-500 p-4 text-white flex justify-around">
         <h1 className="text-2xl font-bold">Create Subject</h1>
+        <Link to="/dashboard-faculty">
+        <button className=" text-2xl bg-blue-500 hover:bg-blue-700 text-white font-bold py-
+        2 px-4 rounded">Home</button>
+        </Link>
+        
       </nav>
 
       <form onSubmit={handleSubmit} className="mt-6 space-y-4">
