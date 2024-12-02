@@ -9,6 +9,7 @@ const CreateStudent = () => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
+    email: "",
     date_of_birth: "",
     gender: "M",
     blood_group: "O+",
