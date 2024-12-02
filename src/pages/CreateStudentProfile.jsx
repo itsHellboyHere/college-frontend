@@ -1,7 +1,8 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate ,Link} from "react-router";
+
 const CreateStudentProfile = () => {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -34,18 +35,25 @@ const CreateStudentProfile = () => {
       console.log(response);
       
       toast.success("Profile created successfully!");
-    navigate("/dashboard");
-      console.log(response.data);
+      return navigate("/dashboard");
+      
     } catch (err) {
-      console.log(err);
-      toast.error("Failed to create profile.");
+      console.log(err.response.data.error);
+      toast.error(err.response.data.error);
+      navigate("/dashboard")
     } finally {
       setLoading(false);
     }
   };
+  
+
+  
+
+
 
   return (
     <section className="h-screen grid place-items-center">
+      <Link to ='/dashboard' className="ml-2 text-center link link-hover link-primary capitalize">Back to Home</Link>
       <form
         onSubmit={handleSubmit}
         className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4"

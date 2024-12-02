@@ -18,7 +18,7 @@ import CreateSubject from "./components/CreateSubject"
 const App = () => {
    const location = useLocation();
 
-  // Exclude Header from LandingPage and Login
+
   const excludeHeaderPaths = [ "/login","/regiter","/register-faculty"];
   return (
     <div>
@@ -30,16 +30,21 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           < Route path="/register-faculty" element={<RegisterFaculty/>}/>
           <Route path="/login" element={<Login />} />
-          <Route path="/create-student-profile" element={ 
-            <ProtectedRoute>
-              <CreateStudentProfile/>
-            </ProtectedRoute>
-          } />
+       
         <Route path="/dashboard" element={
           <ProtectedRoute role="is_student" >
             <DashBoard />
             </ProtectedRoute>
         } />
+        
+        <Route
+        path="/create-student-profile"
+        element={
+          <ProtectedRoute role="is_student" >
+            <CreateStudentProfile />
+          </ProtectedRoute> }
+        />
+        
         <Route path="/dashboard-faculty" element={
           <ProtectedRoute role="is_faculty" >
             <DasBoardFaculty/>
