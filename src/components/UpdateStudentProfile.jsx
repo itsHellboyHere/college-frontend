@@ -12,6 +12,7 @@ const UpdateStudentProfile = () => {
     blood_group: "",
     contact_number: "",
     address: "",
+    
   });
   const [loading, setLoading] = useState(false);
 

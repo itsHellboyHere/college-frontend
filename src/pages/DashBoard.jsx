@@ -21,9 +21,9 @@ const DashBoard = () => {
         }
       );
       setStudent(response.data);
-      setProfilePic(
-        response.data.profile_pic || "https://via.placeholder.com/150"
-      );
+      // setProfilePic(
+      //   response.data.profile_pic || "https://via.placeholder.com/150"
+      // );
     } catch (err) {
       console.error(err);
       setError("Failed to fetch student profile.");
@@ -32,12 +32,34 @@ const DashBoard = () => {
     }
   };
 
+  const fetchProfilePic= async() =>{
+    try {
+      const token=localStorage.getItem("access_token");
+      const response= await axios.get(
+        "https://joyful-determination-production.up.railway.app/api/students/profile-pic/",
+        {
+          headers:{
+            Authorization:`Bearer ${token}`
+            },
+        }
+        
+      )
+      setProfilePic(response.data.profile_pic_url || "https://via.placeholder.com/150")
+      console.log(response.data.profile_pic_url);
+      
+    } catch (error) {
+      console.log(error);
+      setError("Failed to load profile pic");
+      
+    }
+  }
 
   useEffect(() => {
     fetchStudentProfile();
+    fetchProfilePic();
   }, []);
 
-  // Handle profile picture change
+
   const handleProfilePicChange = async (event) => {
     const file = event.target.files[0];
     if (!file) return;

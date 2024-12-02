@@ -84,6 +84,17 @@ const CreateStudent = () => {
           />
         </div>
         <div className="mb-4">
+          <label className="block text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="border border-gray-300 p-2 rounded w-full"
+            required
+          />
+        </div>
+        <div className="mb-4">
           <label className="block text-gray-700">Date of Birth</label>
           <input
             type="date"
