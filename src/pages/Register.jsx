@@ -25,7 +25,7 @@ const Register = () => {
 
     try {
       // Simulate form submission (e.g., send data to API)
-      const response= await axios.post("http://localhost:8001/api/auth/register/",
+      const response= await axios.post("https://joyful-determination-production.up.railway.app/api/auth/register/",
         {
             "username": username,
             "password":password,
