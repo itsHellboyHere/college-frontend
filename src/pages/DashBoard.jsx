@@ -6,6 +6,7 @@ const DashBoard = () => {
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
   const [profilePic, setProfilePic] = useState("");
 
   // Fetch student profile data
@@ -165,11 +166,19 @@ const DashBoard = () => {
               <p>
                 <strong>Address:</strong> {student.address}
               </p>
-              <p>
+                <p>
                 <strong>Subjects:</strong>{" "}
-                {student.subjects.length > 0
-                  ? student.subjects.join(", ")
-                  : "No subjects assigned yet."}
+                {student.subjects.length > 0 ? (
+                  <ul className="list-disc pl-4">
+                    {student.subjects.map((subject) => (
+                      <li key={subject.id}>
+                        <strong>{subject.name}:</strong> {subject.description}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  "No subjects assigned yet."
+                )}
               </p>
             </>
           )}
